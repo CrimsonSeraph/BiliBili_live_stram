@@ -1,16 +1,16 @@
-#ifndef MYWINDOW_H
-#define MYWINDOW_H
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
 
 #include <QWidget>
 #include <qrgb.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
-	class MyWindow;
+	class MainWindow;
 }
 QT_END_NAMESPACE
 
-class MyWindow : public QWidget {
+class MainWindow : public QWidget {
 	Q_OBJECT
 
 public:
@@ -19,17 +19,18 @@ public:
 		light_mode
 	};
 
-	MyWindow(QWidget* parent = nullptr);
-	~MyWindow();
+	MainWindow(QWidget* parent = nullptr);
+	~MainWindow();
 
 	void changeMode();
+    void setButtonMode(QString style);
 
 private slots:
 
     void on_change_mode_clicked();
 
 private:
-	Ui::MyWindow* ui;
+	Ui::MainWindow* ui;
 	mode w_mode = mode::light_mode;
 	QString light_mode_bg_style = QString("background:qlineargradient("
 		"x1 : 0, y1 : 0, x2 : 0, y2 : 1,"
@@ -43,30 +44,30 @@ private:
 		"stop : 1 rgba(0, 104, 139, 1))");
 
 	QString light_mode_button_style = QString("QPushButton {"
-        "   background-color: rgba(80, 80, 80, 0.8);"
+        "   background-color: rgba(238, 169, 184,0.6);"
         "   color: rgba(255,255,255,1);"
-        "   border-radius: 6px;"
-        "   border: 1px solid rgba(255,255,255,0.1);"
-        "   padding: 6px 12px;"
+        "   border-radius: 3px;"
+        "   border: 3px solid rgba(255,255,255,0.1);"
+        "   padding: 3px 6px;"
 		"}"
 		"QPushButton:hover {"
-        "   background-color: rgba(110, 110, 110, 0.8);"
+        "   background-color: rgba(255, 181, 197,0.6);"
 		"}"
 		"QPushButton:pressed {"
-        "   background-color: rgba(60, 60, 60, 0.8);"
+        "   background-color: rgba(205, 145, 158,0.6);"
 		"}");
 	QString dark_mode_button_style = QString("QPushButton {"
-        "	background-color: rgba(50, 50, 50, 0.8);"
+        "	background-color: rgba(100, 149, 237,0.6);"
         "	color: rgba(255,255,255,1);"
-		"	border-radius: 6px;"
-        "	border: 1px solid rgba(255,255,255,0.05);"
-		"	padding: 6px 12px;"
+        "	border-radius: 3px;"
+        "	border: 3px solid rgba(255,255,255,0.05);"
+        "	padding: 3px 6px;"
 		"}"
 		"QPushButton:hover {"
-        "	background-color: rgba(70, 70, 70, 0.8);"
+        "	background-color: rgba(70, 130, 180,0.6);"
 		"}"
 		"QPushButton:pressed {"
-        "	background-color: rgba(40, 40, 40, 0.8);"
+        "	background-color: rgba(25, 25, 112,0.6);"
 		"}");
 };
-#endif // MYWINDOW_H
+#endif // MAINWINDOW_H

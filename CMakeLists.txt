@@ -16,9 +16,9 @@ set(TS_FILES BiliBili_live_stram_zh_CN.ts)
 
 set(PROJECT_SOURCES
         main.cpp
-        MyWindow.cpp
-        MyWindow.h
-        MyWindow.ui
+        MainWindow.cpp
+        MainWindow.h
+        MainWindow.ui
         ${TS_FILES}
 )
 
