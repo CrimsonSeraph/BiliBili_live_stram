@@ -1,9 +1,5 @@
 #include "MainWindow.h"
 
-#include <QApplication>
-#include <QLocale>
-#include <QTranslator>
-
 int main(int argc, char* argv[]) {
 	QApplication a(argc, argv);
 
@@ -16,7 +12,7 @@ int main(int argc, char* argv[]) {
 			break;
 		}
 	}
-	MainWindow main_window;
+    MainWindow main_window;
 	main_window.show();
 	return a.exec();
 }
