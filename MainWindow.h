@@ -1,8 +1,10 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QWidget>
+#include <QMainWindow>
 #include <qrgb.h>
+#include <QSystemTrayIcon>
+#include <QMenu>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -10,7 +12,7 @@ namespace Ui {
 }
 QT_END_NAMESPACE
 
-class MainWindow : public QWidget {
+class MainWindow : public QMainWindow {
 	Q_OBJECT
 
 public:
@@ -31,6 +33,7 @@ private slots:
 
 private:
 	Ui::MainWindow* ui;
+
 	mode w_mode = mode::light_mode;
 	QString light_mode_bg_style = QString("background:qlineargradient("
 		"x1 : 0, y1 : 0, x2 : 0, y2 : 1,"

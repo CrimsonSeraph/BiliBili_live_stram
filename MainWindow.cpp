@@ -2,11 +2,24 @@
 #include "./ui_MainWindow.h"
 
 MainWindow::MainWindow(QWidget* parent)
-	: QWidget(parent)
+    : QMainWindow(parent)
 	, ui(new Ui::MainWindow) {
 	ui->setupUi(this);
     this->setStyleSheet(light_mode_bg_style);
     setButtonMode(light_mode_button_style);
+    QSystemTrayIcon *tray = new QSystemTrayIcon(this);
+    tray->setIcon(QIcon(":/icon.png"));
+    tray->setToolTip("BiliBili推流码获取");
+    QMenu *menu = new QMenu(this);
+    menu->addAction("退出", qApp, &QCoreApplication::quit);
+    tray->setContextMenu(menu);
+    tray->show();
+
+    connect(this, &QMainWindow::windowStateChanged, [this](Qt::WindowState state){
+        if(state == Qt::WindowMinimized){
+            this->hide();
+        }
+    });
 }
 
 MainWindow::~MainWindow() {
