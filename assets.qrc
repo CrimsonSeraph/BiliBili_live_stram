@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/AllAssets">
+        <file>assets/default_avatar.png</file>
+    </qresource>
+</RCC>

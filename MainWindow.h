@@ -11,6 +11,8 @@
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
+#include <qdir.h>
+#include <QGraphicsDropShadowEffect>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -30,29 +32,50 @@ public:
 	MainWindow(QWidget* parent = nullptr);
 	~MainWindow();
 
-	void closeEvent(QCloseEvent* event) override;
-	void changeEvent(QEvent* event) override;
-	void changeMode();
-	void setButtonMode(QString style);
+	void closeEvent(QCloseEvent* event) override;//窗口关闭事件
+	void changeEvent(QEvent* event) override;//窗口改变事件
+	void changeMode();//切换模式
+	void setButtonStyle(const QString style);//设置所有按键样式
+    void setInfoStyle(const QString style);//设置内容区域样式
+	void quit();//退出程序
+    void resetLoginButtonText();//更改登录按键文本
 
 private slots:
 
 	void on_change_mode_clicked();
 
+	void on_quit_clicked();
+
 private:
 	Ui::MainWindow* ui;
 	QSystemTrayIcon* tray;
 
-    QString menu_style = QString("QMenu {"
-		"  background-color: rgba(30,30,30,230);"
-		"  color: white;"
-		"  border: 1px solid gray;"
+    bool isLogin = false;
+
+	QString menu_style = QString("QMenu {"
+		"   background-color: rgba(30, 30, 30, 1);"
+		"   color: rgba(255, 255, 255, 1);"
+		"   border: 1px solid gray;"
 		"}"
 		"QMenu::item {"
-		"  padding: 5px 30px;"
+		"   padding: 5px 30px;"
 		"}"
 		"QMenu::item:selected {"
-		"  background-color: rgba(50,50,50,255);"
+		"   background-color: rgba(50, 50, 50, 1);"
+		"}");
+
+	QString info_light_style = QString("QWidget {"
+		"   background-color: rgba(255, 255, 255, 1);"
+		"   color: rgba(130, 130, 130, 1);"
+		"   border: 1px solid rgba(124, 252, 0, 1);"
+		"   border-radius: 10px;"
+		"}");
+
+	QString info_dark_style = QString("QWidget {"
+		"   background-color: rgba(232, 232, 232, 1);"
+		"   color: rgba(0, 0, 0, 1);"
+		"   border: 1px solid rgba(34, 139, 34, 1);"
+		"   border-radius: 10px;"
 		"}");
 
 	mode w_mode = mode::light_mode;
