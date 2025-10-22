@@ -9,8 +9,8 @@ MainWindow::MainWindow(QWidget* parent)
     //初始化样式
     resetLogin();
 	this->setStyleSheet(light_mode_bg_style);
-	setButtonStyle(light_mode_button_style);
-	setInfoStyle(info_light_style);
+    setButtonStyle(light_mode_button_style);
+    setInfoStyle(info_light_style);
 
     //创建托盘图标
 	tray = new QSystemTrayIcon(this);
@@ -31,6 +31,26 @@ MainWindow::MainWindow(QWidget* parent)
 			this->setWindowState(Qt::WindowActive);
 		}
     });
+
+    loginManager = new LoginManager(this);
+
+    // 当二维码生成完成时，更新 QR_label
+    connect(loginManager, &LoginManager::qrCodeUpdated, ui->QR_label, &QLabel::setPixmap);
+    ui->QR_label->setScaledContents(true);
+    ui->QR_label->setAlignment(Qt::AlignCenter);
+
+    // 当登录状态更新时，显示到 Status_label
+    connect(loginManager, &LoginManager::loginStatusChanged, ui->Status_label, &QLabel::setText);
+    ui->Status_label->setAlignment(Qt::AlignCenter);
+
+    //登录成功信号
+    connect(loginManager, &LoginManager::loginSuccess, this, [this](){
+        isLogin = true;
+        resetLogin();
+    });
+
+    //启动二维码登录流程
+    loginManager->startLogin();
 }
 
 MainWindow::~MainWindow() {
@@ -80,7 +100,7 @@ void MainWindow::setButtonStyle(const QString style) {
 }
 
 void MainWindow::setInfoStyle(const QString style) {
-	QPixmap pix(":/AllAssets/assets/default_avatar.png");
+    QPixmap pix(":/AllAssets/assets/default_avatar.png");
 	ui->avatar->setPixmap(pix);
 	ui->avatar->setScaledContents(true);
 	ui->avatar->setAlignment(Qt::AlignCenter);
@@ -89,7 +109,7 @@ void MainWindow::setInfoStyle(const QString style) {
     for (auto& label : labels) label->setStyleSheet(style);
 
     //重置文本信息
-	ui->name->setText("账号名称(等待登录)");
+    ui->name->setText("账号名称");
 	ui->fans->setText("粉丝");
 	ui->like->setText("获赞");
     ui->website->setText("服务器");
@@ -101,7 +121,7 @@ void MainWindow::quit() {
 }
 
 void MainWindow::resetLogin() {
-    ui->login_button->setText(isLogin ? "信息" : "登录");
+    ui->login_button->setText(isLogin ? "信息" : "登录页");
     ui->all_stackedWidget->setCurrentWidget(isLogin ? ui->info_page : ui->login_page);
 };
 

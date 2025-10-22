@@ -107,7 +107,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>登录</string>
+    <string>登录页</string>
    </property>
   </widget>
   <widget class="QStackedWidget" name="all_stackedWidget">
@@ -144,7 +144,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>账号名称(等待登录)</string>
+      <string>账号名称</string>
      </property>
     </widget>
     <widget class="QLabel" name="fans">
@@ -178,7 +178,7 @@
       <rect>
        <x>10</x>
        <y>155</y>
-       <width>150</width>
+       <width>260</width>
        <height>35</height>
       </rect>
      </property>
@@ -191,7 +191,7 @@
       <rect>
        <x>10</x>
        <y>100</y>
-       <width>150</width>
+       <width>260</width>
        <height>35</height>
       </rect>
      </property>
@@ -202,17 +202,30 @@
    </widget>
    <widget class="QWidget" name="setting_page"/>
    <widget class="QWidget" name="login_page">
-    <widget class="QLabel" name="QR_code">
+    <widget class="QLabel" name="QR_label">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>260</width>
-       <height>260</height>
+       <x>20</x>
+       <y>30</y>
+       <width>240</width>
+       <height>240</height>
       </rect>
      </property>
      <property name="text">
       <string>点击登录获取二维码</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Status_label">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>280</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>登录状态显示</string>
      </property>
     </widget>
    </widget>
