@@ -5,16 +5,20 @@ MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
 	, ui(new Ui::MainWindow) {
 	ui->setupUi(this);
-    resetLoginButtonText();
+
+    //初始化样式
+    resetLogin();
 	this->setStyleSheet(light_mode_bg_style);
 	setButtonStyle(light_mode_button_style);
 	setInfoStyle(info_light_style);
 
+    //创建托盘图标
 	tray = new QSystemTrayIcon(this);
 	tray->setIcon(QApplication::style()->standardIcon(QStyle::SP_ComputerIcon));
 	tray->setToolTip("BiliBili推流码获取");
 	tray->show();
 
+    //创建托盘右键菜单
 	QMenu* menu = new QMenu(this);
 	menu->setStyleSheet(menu_style);
 	menu->addAction("退出", qApp, &QCoreApplication::quit);
@@ -26,7 +30,7 @@ MainWindow::MainWindow(QWidget* parent)
 			this->raise();
 			this->setWindowState(Qt::WindowActive);
 		}
-		});
+    });
 }
 
 MainWindow::~MainWindow() {
@@ -72,8 +76,7 @@ void MainWindow::changeMode() {
 
 void MainWindow::setButtonStyle(const QString style) {
 	auto buttons = this->findChildren<QPushButton*>();
-	for (auto& btn : buttons)
-		btn->setStyleSheet(style);
+    for (auto& btn : buttons) btn->setStyleSheet(style);
 }
 
 void MainWindow::setInfoStyle(const QString style) {
@@ -82,29 +85,38 @@ void MainWindow::setInfoStyle(const QString style) {
 	ui->avatar->setScaledContents(true);
 	ui->avatar->setAlignment(Qt::AlignCenter);
 
-	ui->name->setStyleSheet(style);
-	ui->avatar->setStyleSheet(style);
-	ui->fans->setStyleSheet(style);
-	ui->like->setStyleSheet(style);
+    auto labels = this->findChildren<QLabel*>();
+    for (auto& label : labels) label->setStyleSheet(style);
 
+    //重置文本信息
 	ui->name->setText("账号名称(等待登录)");
 	ui->fans->setText("粉丝");
 	ui->like->setText("获赞");
+    ui->website->setText("服务器");
+    ui->stream_code->setText("推流码");
 }
 
 void MainWindow::quit() {
 	qApp->quit();
 }
 
-void MainWindow::resetLoginButtonText() {
-	ui->login->setText(isLogin ? "信息" : "登录");
+void MainWindow::resetLogin() {
+    ui->login_button->setText(isLogin ? "信息" : "登录");
+    ui->all_stackedWidget->setCurrentWidget(isLogin ? ui->info_page : ui->login_page);
 };
 
 void MainWindow::on_change_mode_clicked() {
 	changeMode();
 }
 
+void MainWindow::on_login_button_clicked() {
+    resetLogin();
+}
 
-void MainWindow::on_quit_clicked() {
+void MainWindow::on_setting_button_clicked() {
+    ui->all_stackedWidget->setCurrentWidget(ui->setting_page);
+}
+
+void MainWindow::on_quit_button_clicked() {
 	quit();
 }

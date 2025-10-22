@@ -75,7 +75,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="setting">
+     <widget class="QPushButton" name="setting_button">
       <property name="text">
        <string>设置</string>
       </property>
@@ -89,7 +89,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="quit">
+     <widget class="QPushButton" name="quit_button">
       <property name="text">
        <string>退出</string>
       </property>
@@ -97,7 +97,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QPushButton" name="login">
+  <widget class="QPushButton" name="login_button">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -110,7 +110,7 @@
     <string>登录</string>
    </property>
   </widget>
-  <widget class="QStackedWidget" name="stackedWidget">
+  <widget class="QStackedWidget" name="all_stackedWidget">
    <property name="geometry">
     <rect>
      <x>110</x>
@@ -123,14 +123,15 @@
     <widget class="QLabel" name="avatar">
      <property name="geometry">
       <rect>
-       <x>170</x>
+       <x>190</x>
        <y>10</y>
-       <width>100</width>
-       <height>100</height>
+       <width>80</width>
+       <height>80</height>
       </rect>
      </property>
      <property name="text">
-      <string>头像加载失败</string>
+      <string>头像
+加载失败</string>
      </property>
     </widget>
     <widget class="QLabel" name="name">
@@ -138,8 +139,8 @@
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>150</width>
-       <height>30</height>
+       <width>160</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="text">
@@ -150,9 +151,9 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>50</y>
-       <width>70</width>
-       <height>30</height>
+       <y>55</y>
+       <width>75</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="text">
@@ -162,19 +163,59 @@
     <widget class="QLabel" name="like">
      <property name="geometry">
       <rect>
-       <x>90</x>
-       <y>50</y>
-       <width>70</width>
-       <height>30</height>
+       <x>95</x>
+       <y>55</y>
+       <width>75</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="text">
       <string>获赞</string>
      </property>
     </widget>
+    <widget class="QLabel" name="stream_code">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>155</y>
+       <width>150</width>
+       <height>35</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>推流码</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="website">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>100</y>
+       <width>150</width>
+       <height>35</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>服务器</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="setting_page"/>
-   <widget class="QWidget" name="login_page"/>
+   <widget class="QWidget" name="login_page">
+    <widget class="QLabel" name="QR_code">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>260</width>
+       <height>260</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>点击登录获取二维码</string>
+     </property>
+    </widget>
+   </widget>
   </widget>
  </widget>
  <resources/>

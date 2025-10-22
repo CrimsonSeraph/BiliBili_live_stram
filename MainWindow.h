@@ -38,13 +38,17 @@ public:
 	void setButtonStyle(const QString style);//设置所有按键样式
     void setInfoStyle(const QString style);//设置内容区域样式
 	void quit();//退出程序
-    void resetLoginButtonText();//更改登录按键文本
+    void resetLogin();//切换登录状态
 
 private slots:
 
 	void on_change_mode_clicked();
 
-	void on_quit_clicked();
+    void on_login_button_clicked();
+
+    void on_setting_button_clicked();
+
+    void on_quit_button_clicked();
 
 private:
 	Ui::MainWindow* ui;
@@ -69,6 +73,7 @@ private:
 		"   color: rgba(130, 130, 130, 1);"
 		"   border: 1px solid rgba(124, 252, 0, 1);"
 		"   border-radius: 10px;"
+        "   qproperty-alignment: 'AlignCenter';"
 		"}");
 
 	QString info_dark_style = QString("QWidget {"
@@ -76,6 +81,7 @@ private:
 		"   color: rgba(0, 0, 0, 1);"
 		"   border: 1px solid rgba(34, 139, 34, 1);"
 		"   border-radius: 10px;"
+        "   qproperty-alignment: 'AlignCenter';"
 		"}");
 
 	mode w_mode = mode::light_mode;
